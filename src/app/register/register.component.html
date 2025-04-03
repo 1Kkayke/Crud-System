@@ -1,0 +1,59 @@
+<div fxLayout="row" fxLayoutAlign="center">
+    <div fxLayout="column" fxFlex="1000px">
+        <form class="mt-60" #clientsFrm (ngSubmit)="save()">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Personal Data</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="mat-20">
+                    <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10">
+                        <mat-form-field class="half-width" appearance="outline">
+                            <mat-label>Name: *</mat-label>
+                            <input type="text" matInput placeholder="José Ferreira da Silva" matInput [(ngModel)]="client.name" name="Name"/>
+                        </mat-form-field>
+                        <mat-form-field class="half-width" appearance="outline">
+                            <mat-label>CPF: *</mat-label>
+                            <input type="text" matInput placeholder="000.000.000-00" matInput [(ngModel)]="client.cpf" name="cpf"/>
+                        </mat-form-field>
+                        <mat-form-field class="mini-width" appearance="outline">
+                            <mat-label>date of birth: *</mat-label>
+                            <input type="text" matInput placeholder="00/00/0000" matInput [(ngModel)]="client.birthDate" name="BirthDate"/>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10">
+                        <mat-form-field class="half-width" appearance="outline">
+                            <mat-label>RG: *</mat-label>
+                            <input type="text" matInput placeholder="000.000.000-0" matInput [(ngModel)]="client.rg"  name="rg"/>
+                        </mat-form-field>
+
+                        <mat-form-field class="half-width" appearance="outline">
+                            <mat-label>Phone: *</mat-label>
+                            <input type="text" matInput placeholder="(00) 90000-0000" matInput [(ngModel)]="client.phone" name="phone"/>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Email: *</mat-label>
+                            <input type="text" matInput placeholder="exampleMail@gmail.com" matInput [(ngModel)]="client.email" name="Email"/>
+                        </mat-form-field>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10">
+                        <button mat-flat-button color="secondary" type="submit">
+                            <mat-icon fontIcon="save">Save</mat-icon>
+                        </button>
+                        <button mat-flat-button color="secondary" type="reset" style="box-shadow: 30px;">
+                            <mat-icon fontIcon="refresh"></mat-icon>
+                        </button>
+                        <button mat-flat-button color="warn" type="reset">
+                            <mat-icon fontIcon="backspace">backspace</mat-icon>
+                        </button>
+                    </div>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+    </div>
+</div>

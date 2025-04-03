@@ -1,0 +1,13 @@
+.spacer{
+    display: flex;
+        justify-content: end;
+        width: 100%;
+        gap: 25px;
+}
+
+.Header{
+    display: flex;
+    justify-content: start;
+    height: 30px;
+    gap : 30px;
+}
