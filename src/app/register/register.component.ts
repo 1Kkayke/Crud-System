@@ -27,6 +27,10 @@ export class RegisterComponent {
   }
 
   save(){
-    this.clientService.save(this.client);
+    if(this.clientService.save(this.client)){
+      alert('User created')
+    }else{
+      alert('Fail in creation')
+    }
   }
 }
