@@ -10,16 +10,29 @@ export class ClientService {
 
   constructor(){ }
 
-  save(client: Client){
+  save(client: Client): boolean{
     const storage = this.getStorage();
     storage.push(client);
 
     localStorage.setItem(ClientService.REPO_CLIENTS, JSON.stringify(storage));
+    return true;
+
+    return false;
   }
 
-  searchClient(name: string): Client[] {
-    const storage = this.getStorage();
-    return storage.filter(client => client.name.toLowerCase().includes(name.toLowerCase()));
+  searchClient(NameSearch: string): Client[] {
+    
+    const clients = this.getStorage();
+    
+    if(!NameSearch){
+      return clients;
+    }
+    
+    const lowerCaseSearch = NameSearch.toLowerCase();
+    
+    return clients.filter(client => 
+      client.name?.toLowerCase().includes(lowerCaseSearch)
+    );
   }
 
   private getStorage(): Client[] {

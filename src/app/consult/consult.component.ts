@@ -25,7 +25,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./consult.component.scss']
 })
 export class ConsultComponent implements OnInit{
-
+  NameSearch: string = ' ';
   ListClients: Client[] = [];
   columnsTable: string[] = ['Id','Name','Cpf','DateOfBirth','Rg','Phone','Email']
   client: string = ' ';
@@ -39,5 +39,8 @@ export class ConsultComponent implements OnInit{
     this.ListClients = this.service.searchClient('');
   }
 
+  search(){
+    this.ListClients = this.service.searchClient(this.NameSearch);
+  }
 
 }

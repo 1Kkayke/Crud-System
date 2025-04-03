@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="center">
     <div fxLayout="column" fxFlex="1000px">
-        <form class="mt-60" #buscaForm="ngForm">
+        <form class="mt-60" #buscaForm="ngForm" (ngSubmit)="search()">
             <mat-card appearance="outlined">
                 <mat-card-header>
                     <mat-card-title >Search</mat-card-title>
@@ -10,7 +10,7 @@
                         <div fxLayout="column" fxFlex="70">
                             <mat-form-field>
                                 <mat-label>Name:</mat-label>
-                                <input matInput placeholder="Enter name">
+                                <input matInput name="NameSearch" placeholder="Enter name" [(ngModel)]="NameSearch">
                             </mat-form-field>
                         </div>
                     </div>
