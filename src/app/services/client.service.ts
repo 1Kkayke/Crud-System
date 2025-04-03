@@ -18,7 +18,8 @@ export class ClientService {
   }
 
   searchClient(name: string): Client[] {
-    return this.getStorage();
+    const storage = this.getStorage();
+    return storage.filter(client => client.name.toLowerCase().includes(name.toLowerCase()));
   }
 
   private getStorage(): Client[] {

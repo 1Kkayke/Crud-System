@@ -8,7 +8,7 @@ import { MatTableModule} from '@angular/material/table';
 import { MatButtonModule} from '@angular/material/button';
 import { ClientService } from '../services/client.service';
 import { Client } from '../register/client';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-consult',
@@ -18,18 +18,20 @@ import { Client } from '../register/client';
     MatIconModule,
     FormsModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    CommonModule
   ],
   templateUrl: './consult.component.html',
-  styleUrl: './consult.component.scss'
+  styleUrls: ['./consult.component.scss']
 })
 export class ConsultComponent implements OnInit{
 
   ListClients: Client[] = [];
-  
+  columnsTable: string[] = ['Id','Name','Cpf','DateOfBirth','Rg','Phone','Email']
+  client: string = ' ';
+
   constructor(
-    private service: ClientService
-  ){
+    private service: ClientService){
 
   }
 
