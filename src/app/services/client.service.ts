@@ -17,7 +17,11 @@ export class ClientService {
     localStorage.setItem(ClientService.REPO_CLIENTS, JSON.stringify(storage));
   }
 
-  getStorage(): Client[] {
+  searchClient(name: string): Client[] {
+    return this.getStorage();
+  }
+
+  private getStorage(): Client[] {
     const __clientsRepository = localStorage.getItem(ClientService.REPO_CLIENTS);
     
     if (__clientsRepository){
