@@ -23,7 +23,6 @@ import { ClientService } from '../services/client.service';
 export class RegisterComponent {
   client: Client = Client.newClient();
 
-
   constructor(private clientService: ClientService) {
   }
 
