@@ -76,9 +76,8 @@
                             <button type="button" mat-button (click)="preEdit(client.id)" class="mt-10">
                                 <mat-icon fontIcon="edit"></mat-icon>
                             </button>
-                        
-                            @if(!deleting){
-                                <button type="button" mat-button (click)="preDelete()">
+                            @if(!client.deleting){
+                                <button type="button" mat-button (click)="preDelete(client)">
                                     <mat-icon fontIcon="delete"></mat-icon>
                                 </button>
                             } @else {

@@ -11,6 +11,7 @@ import { Client } from './client';
 import { ClientService } from '../services/client.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { query } from '@angular/animations';
+import { NgxMaskDirective,provideNgxMask,NgxMaskConfig} from 'ngx-mask'
 @Component({
   selector: 'app-register',
   imports: [FlexLayoutModule,
@@ -19,7 +20,10 @@ import { query } from '@angular/animations';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatButtonModule,],
+    MatButtonModule,
+    NgxMaskDirective,],
+  
+  providers:[provideNgxMask(),],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })

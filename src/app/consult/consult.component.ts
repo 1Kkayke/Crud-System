@@ -31,7 +31,6 @@ export class ConsultComponent implements OnInit{
   ListClients: Client[] = [];
   columnsTable: string[] = ['Id','Name','Cpf','DateOfBirth','Rg','Phone','Email','Actions']
   client: string = ' ';
-  deleting: boolean = false;
 
   constructor(
     private service: ClientService,
@@ -52,14 +51,11 @@ export class ConsultComponent implements OnInit{
     this.router.navigate(['/register'], { queryParams: {"id": id }})
   }
 
-  preDelete(){
-    this.deleting = true;
+  preDelete(client : Client){
+    client.deleting = true;
   }
   delete(client : Client) {
-    if(this.service.deleteUser(client)){
-      this.ListClients = [];
-    };
-    
-    this.deleting = false;
+    this.service.deleteUser(client)
+    this.ListClients = this.service.searchClient('');
   }
 }

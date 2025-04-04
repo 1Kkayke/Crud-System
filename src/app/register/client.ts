@@ -8,6 +8,7 @@ export class Client {
     birthDate!: string;
     email?: string;
     phone?: string;
+    deleting: boolean = false;
 
     static newClient() {
         let client = new Client();
