@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,inject } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -10,6 +10,7 @@ import { ClientService } from '../services/client.service';
 import { Client } from '../register/client';
 import { CommonModule } from '@angular/common';
 import { Route, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-consult',
@@ -34,9 +35,10 @@ export class ConsultComponent implements OnInit{
 
   constructor(
     private service: ClientService,
-  private router: Router){
-
+  private router: Router,){
   }
+
+  private _snackBar = inject(MatSnackBar);
 
   ngOnInit(){
     this.ListClients = this.service.searchClient('');
@@ -55,7 +57,13 @@ export class ConsultComponent implements OnInit{
     client.deleting = true;
   }
   delete(client : Client) {
-    this.service.deleteUser(client)
+    if(this.service.deleteUser(client)){
+      this._snackBar.open("User Deleted")
+    }else{
+      this._snackBar.open('Deleted', 'Close', {
+        duration: 2000
+      })
+    }
     this.ListClients = this.service.searchClient('');
   }
 }

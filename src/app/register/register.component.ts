@@ -51,14 +51,20 @@ export class RegisterComponent  implements OnInit{
   save(){
     if(!this.updating){
       if(this.clientService.save(this.client)){
-        alert('User created')
+        this._snackBar.open('User Created', 'Close', {
+          duration: 2000
+        })
         this.client = Client.newClient();
       }else{
-        alert('Fail in creation')
+        this._snackBar.open('Fail in Formulary', 'Close', {
+          duration: 2000
+        })
       }
     }else{
       this.clientService.update(this.client);
-      this._snackBar.open("User Updated")
+      this._snackBar.open('User Updated', 'Close', {
+        duration: 2000
+      })
       this.router.navigate(['/consult'])
     }
     
