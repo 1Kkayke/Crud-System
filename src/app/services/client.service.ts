@@ -6,6 +6,7 @@ import { Client } from '../register/client';
 })
 export class ClientService {
 
+
   static REPO_CLIENTS = 'CLIENTS';
 
   constructor(){ }
@@ -33,6 +34,31 @@ export class ClientService {
     return clients.filter(client => 
       client.name?.toLowerCase().includes(lowerCaseSearch)
     );
+  }
+
+  searchClientById(id: string): Client | undefined{
+    const clients = this.getStorage();
+    return clients.find(client => client.id === id)
+  }
+
+  update(client: Client){
+    const storage = this.getStorage();
+    storage.forEach(c =>{
+      if(c.id === client.id){
+        Object.assign(c,client);
+      }
+    })
+    localStorage.setItem(ClientService.REPO_CLIENTS, JSON.stringify(storage));
+  }
+  
+  deleteUser(client: Client): Boolean{
+    const storage = this.getStorage();
+    
+    const NewList = storage.filter(c =>c.id !== client.id)
+    
+    localStorage.setItem(ClientService.REPO_CLIENTS, JSON.stringify(NewList));
+
+    return NewList.length < storage.length;
   }
 
   private getStorage(): Client[] {
