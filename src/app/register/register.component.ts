@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,inject } from '@angular/core';
 import {FlexLayoutModule } from '@angular/flex-layout'
 import {MatCardModule} from '@angular/material/card'
 import { FormsModule} from '@angular/forms'
@@ -6,9 +6,10 @@ import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatInputModule} from '@angular/material/input'
 import {MatIconModule} from '@angular/material/icon'
 import {MatButtonModule} from '@angular/material/button'
+import {MatSnackBar} from '@angular/material/snack-bar';
 import { Client } from './client';
 import { ClientService } from '../services/client.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { query } from '@angular/animations';
 @Component({
   selector: 'app-register',
@@ -27,10 +28,11 @@ export class RegisterComponent  implements OnInit{
   updating: boolean = false;
 
   constructor(private clientService: ClientService,
-    private routerActivated : ActivatedRoute
+    private routerActivated : ActivatedRoute,
+    private router : Router,
   ) {
   } 
-
+  private _snackBar = inject(MatSnackBar);
   ngOnInit(): void {
     this.routerActivated.queryParamMap.subscribe((queryParamMaped: any) => {
       const params = queryParamMaped['params'];
@@ -43,11 +45,18 @@ export class RegisterComponent  implements OnInit{
   }
 
   save(){
-    if(this.clientService.save(this.client)){
-      alert('User created')
-      this.client = Client.newClient();
+    if(!this.updating){
+      if(this.clientService.save(this.client)){
+        alert('User created')
+        this.client = Client.newClient();
+      }else{
+        alert('Fail in creation')
+      }
     }else{
-      alert('Fail in creation')
+      this.clientService.update(this.client);
+      this._snackBar.open("User Updated")
+      this.router.navigate(['/consult'])
     }
+    
   }
 }

@@ -38,7 +38,16 @@ export class ClientService {
   searchClientById(id: string): Client | undefined{
     const clients = this.getStorage();
     return clients.find(client => client.id === id)
+  }
 
+  update(client: Client){
+    const storage = this.getStorage();
+    storage.forEach(c =>{
+      if(c.id === client.id){
+        Object.assign(c,client);
+      }
+    })
+    localStorage.setItem(ClientService.REPO_CLIENTS, JSON.stringify(storage));
   }
   
   private getStorage(): Client[] {

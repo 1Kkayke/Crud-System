@@ -41,13 +41,17 @@
                     </div>
                 </mat-card-content>
                 <mat-card-actions>
-                    <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10">
+                    @if (!updating) {  
+                            <button mat-flat-button color="secondary" type="submit">
+                                <mat-icon fontIcon="save">Save</mat-icon>
+                            </button>
+                        
+                    }@else {
                         <button mat-flat-button color="secondary" type="submit">
-                            <mat-icon fontIcon="save">Save</mat-icon>
+                            <mat-icon fontIcon="update">Update</mat-icon>
                         </button>
-                        <button mat-flat-button color="secondary" type="reset" style="box-shadow: 30px;">
-                            <mat-icon fontIcon="refresh"></mat-icon>
-                        </button>
+                    }
+                    <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10">
                         <button mat-flat-button color="warn" type="reset">
                             <mat-icon fontIcon="backspace">backspace</mat-icon>
                         </button>
