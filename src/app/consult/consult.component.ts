@@ -26,10 +26,12 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./consult.component.scss']
 })
 export class ConsultComponent implements OnInit{
+
   NameSearch: string = ' ';
   ListClients: Client[] = [];
   columnsTable: string[] = ['Id','Name','Cpf','DateOfBirth','Rg','Phone','Email','Actions']
   client: string = ' ';
+  deleting: boolean = false;
 
   constructor(
     private service: ClientService,
@@ -50,4 +52,14 @@ export class ConsultComponent implements OnInit{
     this.router.navigate(['/register'], { queryParams: {"id": id }})
   }
 
+  preDelete(){
+    this.deleting = true;
+  }
+  delete(client : Client) {
+    if(this.service.deleteUser(client)){
+      this.ListClients = [];
+    };
+    
+    this.deleting = false;
+  }
 }
