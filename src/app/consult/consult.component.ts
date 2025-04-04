@@ -26,6 +26,7 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./consult.component.scss']
 })
 export class ConsultComponent implements OnInit{
+
   NameSearch: string = ' ';
   ListClients: Client[] = [];
   columnsTable: string[] = ['Id','Name','Cpf','DateOfBirth','Rg','Phone','Email','Actions']
@@ -50,4 +51,11 @@ export class ConsultComponent implements OnInit{
     this.router.navigate(['/register'], { queryParams: {"id": id }})
   }
 
+  preDelete(client : Client){
+    client.deleting = true;
+  }
+  delete(client : Client) {
+    this.service.deleteUser(client)
+    this.ListClients = this.service.searchClient('');
+  }
 }

@@ -13,23 +13,23 @@
                         </mat-form-field>
                         <mat-form-field class="half-width" appearance="outline">
                             <mat-label>CPF: *</mat-label>
-                            <input type="text" matInput placeholder="000.000.000-00" matInput [(ngModel)]="client.cpf" name="cpf"/>
+                            <input type="text" matInput mask="000.000.000-00"  placeholder="000.000.000-00" matInput [(ngModel)]="client.cpf" name="cpf"/>
                         </mat-form-field>
                         <mat-form-field class="mini-width" appearance="outline">
                             <mat-label>date of birth: *</mat-label>
-                            <input type="text" matInput placeholder="00/00/0000" matInput [(ngModel)]="client.birthDate" name="BirthDate"/>
+                            <input type="text" matInput mask="00/00/0000" placeholder="00/00/0000" matInput [(ngModel)]="client.birthDate" name="BirthDate"/>
                         </mat-form-field>
                     </div>
                     
                     <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10">
                         <mat-form-field class="half-width" appearance="outline">
-                            <mat-label>RG: *</mat-label>
-                            <input type="text" matInput placeholder="000.000.000-0" matInput [(ngModel)]="client.rg"  name="rg"/>
+                            <mat-label>RG: </mat-label>
+                            <input type="text" mask="00.000.000-0" placeholder="00.000.000-0" matInput [(ngModel)]="client.rg"  name="rg"/>
                         </mat-form-field>
 
                         <mat-form-field class="half-width" appearance="outline">
-                            <mat-label>Phone: *</mat-label>
-                            <input type="text" matInput placeholder="(00) 90000-0000" matInput [(ngModel)]="client.phone" name="phone"/>
+                            <mat-label>Phone: </mat-label>
+                            <input type="text" matInput mask="(00) 0000-0000" placeholder="(00) 90000-0000" matInput [(ngModel)]="client.phone" name="phone"/>
                         </mat-form-field>
                     </div>
 

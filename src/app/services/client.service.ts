@@ -6,6 +6,7 @@ import { Client } from '../register/client';
 })
 export class ClientService {
 
+
   static REPO_CLIENTS = 'CLIENTS';
 
   constructor(){ }
@@ -50,6 +51,16 @@ export class ClientService {
     localStorage.setItem(ClientService.REPO_CLIENTS, JSON.stringify(storage));
   }
   
+  deleteUser(client: Client): Boolean{
+    const storage = this.getStorage();
+    
+    const NewList = storage.filter(c =>c.id !== client.id)
+    
+    localStorage.setItem(ClientService.REPO_CLIENTS, JSON.stringify(NewList));
+
+    return NewList.length < storage.length;
+  }
+
   private getStorage(): Client[] {
     const __clientsRepository = localStorage.getItem(ClientService.REPO_CLIENTS);
     
