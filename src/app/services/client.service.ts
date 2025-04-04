@@ -35,6 +35,12 @@ export class ClientService {
     );
   }
 
+  searchClientById(id: string): Client | undefined{
+    const clients = this.getStorage();
+    return clients.find(client => client.id === id)
+
+  }
+  
   private getStorage(): Client[] {
     const __clientsRepository = localStorage.getItem(ClientService.REPO_CLIENTS);
     

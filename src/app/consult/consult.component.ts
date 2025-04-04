@@ -9,6 +9,7 @@ import { MatButtonModule} from '@angular/material/button';
 import { ClientService } from '../services/client.service';
 import { Client } from '../register/client';
 import { CommonModule } from '@angular/common';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-consult',
@@ -27,11 +28,12 @@ import { CommonModule } from '@angular/common';
 export class ConsultComponent implements OnInit{
   NameSearch: string = ' ';
   ListClients: Client[] = [];
-  columnsTable: string[] = ['Id','Name','Cpf','DateOfBirth','Rg','Phone','Email']
+  columnsTable: string[] = ['Id','Name','Cpf','DateOfBirth','Rg','Phone','Email','Actions']
   client: string = ' ';
 
   constructor(
-    private service: ClientService){
+    private service: ClientService,
+  private router: Router){
 
   }
 
@@ -41,6 +43,11 @@ export class ConsultComponent implements OnInit{
 
   search(){
     this.ListClients = this.service.searchClient(this.NameSearch);
+  }
+
+  preEdit(id: string){
+    console.log('id recebido :',id)
+    this.router.navigate(['/register'], { queryParams: {"id": id }})
   }
 
 }
