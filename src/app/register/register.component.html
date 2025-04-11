@@ -1,11 +1,12 @@
-<div fxLayout="row" fxLayoutAlign="center">
-    <div fxLayout="column" fxFlex="1000px">
-        <form class="mt-60" #clientsFrm (ngSubmit)="save()">
+<div fxLayout="row" fxLayoutAlign="center" >
+    <div fxLayout="column" >
+        <form  #clientsFrm (ngSubmit)="save()">
             <mat-card>
                 <mat-card-header>
                     <mat-card-title>Personal Data</mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="mat-20">
+
                     <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10">
                         <mat-form-field class="half-width" appearance="outline">
                             <mat-label>Name: *</mat-label>
@@ -36,10 +37,39 @@
                     <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10">
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>Email: *</mat-label>
-                            <input type="text" matInput placeholder="exampleMail@gmail.com" matInput [(ngModel)]="client.email" name="Email"/>
-                        </mat-form-field>
+                            <input type="text" matInput placeholder="exampleMail@gmail.com" matInput [(ngModel)]="client.email" name="Email"/> 
+                        </mat-form-field> 
                     </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+                        <!-- Select de UF -->
+                        <div fxLayout="column" fxFlex="400px">
+                          <mat-form-field class="full-width">
+                            <mat-label>UF: *</mat-label>
+                            <mat-select>
+                              <mat-option *ngFor="let uf of states" [value]="uf.sigla">
+                                {{ uf.sigla }} - {{ uf.nome }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      
+                        <!-- Select de Municípios -->
+                        <div fxLayout="column" fxFlex="400px">
+                          <mat-form-field class="full-width">
+                            <mat-label>Municípios: *</mat-label>
+                            <mat-select (selectionChange)="loadMunicipies($event)">   
+                              <mat-option *ngFor="let m of municipies" [value]="m.nome">
+                                {{ m.nome }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      
+
                 </mat-card-content>
+
                 <mat-card-actions>
                     @if (!updating) {  
                             <button mat-flat-button color="secondary" type="submit">

@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Client } from '../register/client';
+import { Client } from '../../register/client';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
-
 
   static REPO_CLIENTS = 'CLIENTS';
 
